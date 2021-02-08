@@ -6,7 +6,7 @@ Kenzie Assignment: rot13
 
 # Your name, plus anyone who helped you with this assignment.
 # Give credit where credit is due.
-__author__ = "Benjamin Feder"
+__author__ = "Benjamin Feder, http://www.asciitable.com/, geeksforgeeks.org"
 
 import sys
 from string import ascii_lowercase, ascii_uppercase
@@ -21,12 +21,25 @@ def rotate(message):
 
         change = 13
 
+        # ord() returns the number representing a specific character's unicode
         value = ord(message[letter])
 
-        if value + change > 122:
+        if value < 65 or (value > 90 and value < 97) or value > 122:
+            rot_message += chr(value)
+
+        elif value + change > 122:  # 122 is the last lowercase 'z' in ASCII
             change -= (122 - value)
-            change = change % 26
+            change = change % 26  # 26 letters in the alphabet
+
+            # 96 is the last character before 'a' in ASCII
+            # chr() returns the character that represents the specified unicode number
             rot_message += chr(96 + change)
+
+        elif value > 64 and value < 91:
+            if value + change > 90:
+                rot_message += chr(value - change)
+            else:
+                rot_message += chr(value + change)
 
         else:
             rot_message += chr(value + change)
