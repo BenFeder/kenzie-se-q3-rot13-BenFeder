@@ -9,7 +9,6 @@ Kenzie Assignment: rot13
 __author__ = "Benjamin Feder, http://www.asciitable.com/, geeksforgeeks.org"
 
 import sys
-from string import ascii_lowercase, ascii_uppercase
 
 
 def rotate(message):
@@ -32,7 +31,8 @@ def rotate(message):
             change = change % 26  # 26 letters in the alphabet
 
             # 96 is the last character before 'a' in ASCII
-            # chr() returns the character that represents the specified unicode number
+            # chr() returns the character that represents
+            # the specified unicode number
             rot_message += chr(96 + change)
 
         elif value > 64 and value < 91:
